@@ -12,8 +12,8 @@
 							/>
 						</div>
 						<div class="profile_user-detail">
-							<h5 class="user-name">Rosa Dodson</h5>
-							<p class="user-name-post">UI/UX Designer</p>
+							<h5 class="user-name">{{ `${user.nome} ${user.cognome}` }}</h5>
+							<p class="user-name-post">{{ user.ruolo }}</p>
 						</div>
 					</div>
 				</b-col>
@@ -33,14 +33,14 @@
 								alt=""
 							/>
 							<!-- <i class="dripicons-phone mr-2 text-info font-18"></i> -->
-							<b> phone </b> : +91 23456 78910
+							<b>Telefono </b> : {{ user.telefono }}
 						</li>
 						<li class="mt-2">
 							<!-- <i
 												class="dripicons-mail text-info font-18 mt-2 mr-2"
 											></i> -->
 							<img class="custom-icon" src="../assets/icons/mail.svg" alt="" />
-							<b> Email </b> : mannat.theme@gmail.com
+							<b>Email </b> : {{ user.testo }}
 						</li>
 						<li class="mt-2">
 							<!-- <i
@@ -51,7 +51,7 @@
 								src="../assets/icons/location.svg"
 								alt=""
 							/>
-							<b>Location</b> : USA
+							<b>Сittà </b> : {{ user.citta }}
 						</li>
 					</ul>
 				</b-col>
@@ -80,7 +80,11 @@
 export default {
 	name: 'HelloWorld',
 	props: {
-		msg: String
+		user: {
+			default: () => {},
+			required: true,
+			type: Object
+		}
 	}
 };
 </script>

@@ -1,23 +1,13 @@
 <template>
 	<b-card class="desc">
-		<h1 class="title">Laura Rossi</h1>
+		<h1 class="title">{{ `${user.nome} ${user.cognome}` }}</h1>
 
-		<h6 class="subtitle text-uppercase">some text here</h6>
+		<h6 class="subtitle text-uppercase">{{ user.ruoloSecondario }}</h6>
 
 		<b-row align-v="center">
 			<b-col col lg="6">
 				<p class="user-info">
-					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum
-					voluptatibus repudiandae perferendis officiis molestias commodi
-					cupiditate soluta. Sint quidem ullam odio neque at dolorum magni,
-					architecto iure maxime voluptate, recusandae, exercitationem iusto
-					rem consectetur quos molestias eligendi eum tenetur earum nihil velit
-					deserunt asperiores. Fugit, veniam quia quod excepturi nesciunt magni
-					quo eum sunt fuga iure ipsum officia voluptas recusandae! Quisquam
-					nisi repudiandae voluptate quaerat, voluptatibus, distinctio cumque
-					provident fugit ipsum, dolores voluptatum illo dignissimos deleniti
-					maxime voluptates. Placeat alias autem maxime! Quod in temporibus
-					quidem, inventore asperiores maiores corporis laudantium.
+					{{ user.descrizione }}
 				</p>
 			</b-col>
 		</b-row>
@@ -35,6 +25,14 @@
 <script>
 export default {
 	name: 'Description',
+
+	props: {
+		user: {
+			default: () => {},
+			required: true,
+			type: Object
+		}
+	},
 
 	methods: {
 		goToModifyPage() {
