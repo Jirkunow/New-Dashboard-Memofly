@@ -1,8 +1,8 @@
 <template>
-	<section>
+	<b-container class="pt-2">
 		<Profile />
 		<Description />
-	</section>
+	</b-container>
 </template>
 
 <script>

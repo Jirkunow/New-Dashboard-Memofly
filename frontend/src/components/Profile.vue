@@ -1,5 +1,5 @@
 <template>
-	<b-container fluid>
+	<b-container fluid class="pt-2">
 		<b-card class="profile">
 			<b-row align-v="center">
 				<b-col col lg="4">

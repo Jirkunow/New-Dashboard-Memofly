@@ -22,7 +22,9 @@
 			</b-col>
 		</b-row>
 		<div class="button-container">
-			<b-button class="submit-button">Modifica</b-button>
+			<b-button class="submit-button" @click="goToModifyPage"
+				>Modifica</b-button
+			>
 			<b-button class="cancel-button" variant="outline-primary"
 				>Elimina</b-button
 			>
@@ -32,7 +34,13 @@
 
 <script>
 export default {
-	name: 'Description'
+	name: 'Description',
+
+	methods: {
+		goToModifyPage() {
+			this.$router.push('/modify-form');
+		}
+	}
 };
 </script>
 

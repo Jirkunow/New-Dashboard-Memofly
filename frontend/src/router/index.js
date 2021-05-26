@@ -11,10 +11,10 @@ const routes = [
 		component: CoworkersDetails
 	},
 	{
-		path: '/about',
-		name: 'About',
+		path: '/modify-form',
+		name: 'ModifyForm',
 		component: () =>
-			import(/* webpackChunkName: "about" */ '../views/About.vue')
+			import(/* webpackChunkName: "modify-form" */ '../views/ModifyForm.vue')
 	}
 ];
 
