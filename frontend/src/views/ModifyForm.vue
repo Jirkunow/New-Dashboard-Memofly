@@ -12,7 +12,7 @@
 								<b-form-group id="input-group-1">
 									<b-form-input
 										id="input-1"
-										v-model="form.email"
+										v-model="userClone.nome"
 										placeholder="Nome"
 										required
 									></b-form-input>
@@ -23,7 +23,7 @@
 								<b-form-group id="input-group-2">
 									<b-form-input
 										id="input-2"
-										v-model="form.name"
+										v-model="userClone.cognome"
 										placeholder="Cognome"
 										required
 									></b-form-input>
@@ -38,8 +38,7 @@
 								<b-form-group id="input-group-1">
 									<b-form-input
 										id="input-1"
-										v-model="form.email"
-										type="email"
+										v-model="userClone.telefono"
 										placeholder="Telefono"
 										required
 									></b-form-input>
@@ -50,8 +49,9 @@
 								<b-form-group id="input-group-2">
 									<b-form-input
 										id="input-2"
-										v-model="form.name"
-										placeholder="email"
+										v-model="userClone.testo"
+										placeholder="Email"
+										type="email"
 										required
 									></b-form-input>
 								</b-form-group>
@@ -61,8 +61,8 @@
 								<b-form-group id="input-group-2">
 									<b-form-input
 										id="input-2"
-										v-model="form.name"
-										placeholder="Citta"
+										v-model="userClone.citta"
+										placeholder="Сittà"
 										required
 									></b-form-input>
 								</b-form-group>
@@ -76,8 +76,7 @@
 								<b-form-group id="input-group-1">
 									<b-form-input
 										id="input-1"
-										v-model="form.email"
-										type="email"
+										v-model="userClone.ruolo"
 										placeholder="Ruollo"
 										required
 									></b-form-input>
@@ -88,8 +87,8 @@
 								<b-form-group id="input-group-2">
 									<b-form-input
 										id="input-2"
-										v-model="form.name"
-										placeholder="RuolloCecondario"
+										v-model="userClone.ruoloSecondario"
+										placeholder="Ruollo Cecondario"
 										required
 									></b-form-input>
 								</b-form-group>
@@ -99,7 +98,7 @@
 
 						<b-form-textarea
 							id="textarea"
-							v-model="form.text"
+							v-model="userClone.descrizione"
 							placeholder="Descrizione"
 						></b-form-textarea>
 
@@ -125,37 +124,31 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import { isEmpty } from 'lodash';
 export default {
 	name: 'ModifyForm',
 
 	data() {
-		return {
-			form: {
-				email: '',
-				name: '',
-				text: ''
-			},
-			foods: [
-				{ text: 'Select One', value: null },
-				'Carrots',
-				'Beans',
-				'Tomatoes',
-				'Corn'
-			]
-		};
+		return {};
 	},
+
+	created() {
+		if (isEmpty(this.$store.state.user)) {
+			this.$store.dispatch('fetchUser');
+		}
+	},
+
+	computed: mapGetters(['userClone']),
 
 	methods: {
 		onSubmit(event) {
 			event.preventDefault();
-			alert(JSON.stringify(this.form));
+			this.$store.dispatch('saveUser', this.userClone);
 		},
 		onReset(event) {
 			event.preventDefault();
-
-			this.form.email = '';
-			this.form.name = '';
-			this.form.text = '';
+			this.$store.dispatch('deleteUser', this.userClone.id);
 		}
 	}
 };

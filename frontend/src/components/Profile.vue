@@ -1,5 +1,5 @@
 <template>
-	<b-container fluid class="pt-2">
+	<div>
 		<b-card class="profile">
 			<b-row align-v="center">
 				<b-col col lg="4">
@@ -42,17 +42,6 @@
 							<img class="custom-icon" src="../assets/icons/mail.svg" alt="" />
 							<b>Email </b> : {{ user.testo }}
 						</li>
-						<li class="mt-2">
-							<!-- <i
-												class="dripicons-location text-info font-18 mt-2 mr-2"
-											></i> -->
-							<img
-								class="custom-icon"
-								src="../assets/icons/location.svg"
-								alt=""
-							/>
-							<b>Сittà </b> : {{ user.citta }}
-						</li>
 					</ul>
 				</b-col>
 			</b-row>
@@ -73,7 +62,7 @@
 				</li>
 			</ul>
 		</div>
-	</b-container>
+	</div>
 </template>
 
 <script>
@@ -91,9 +80,12 @@ export default {
 
 <style scoped>
 .profile {
-	background-color: #1c1e2f;
-	box-shadow: 0px 2px 4px rgb(31 30 47 / 10%);
+	background-image: url(../assets/images/pattern2.png);
+	background-repeat: repeat;
 	color: #fff;
+}
+.card.profile {
+	border-radius: 0;
 }
 
 .profile-main {
@@ -132,6 +124,8 @@ export default {
 
 .pills-tab {
 	background-color: #fff;
+	border-bottom-right-radius: 0.25rem;
+	border-bottom-left-radius: 0.25rem;
 }
 
 .nav-pills {

@@ -1,22 +1,16 @@
 <template>
 	<b-card class="desc">
-		<h1 class="title">{{ `${user.nome} ${user.cognome}` }}</h1>
+		<div class="calendario">
+			<h6 class="h6 mb-4">Calendario</h6>
+			<span class="custom-text">{{ user.calendario }}</span>
+		</div>
 
-		<h6 class="subtitle text-uppercase">{{ user.ruoloSecondario }}</h6>
+		<h6 class="h6 mb-4">Orari di lavoro</h6>
+		<b-table-lite :items="user.items" class="table" bordered></b-table-lite>
 
-		<b-row align-v="center">
-			<b-col col lg="6">
-				<p class="user-info">
-					{{ user.descrizione }}
-				</p>
-			</b-col>
-		</b-row>
 		<div class="button-container">
 			<b-button class="submit-button" @click="goToModifyPage"
 				>Modifica</b-button
-			>
-			<b-button class="cancel-button" variant="outline-primary"
-				>Elimina</b-button
 			>
 		</div>
 	</b-card>
@@ -34,6 +28,10 @@ export default {
 		}
 	},
 
+	data() {
+		return {};
+	},
+
 	methods: {
 		goToModifyPage() {
 			this.$router.push('/modify-form');
@@ -42,7 +40,7 @@ export default {
 };
 </script>
 
-<style scope>
+<style>
 .desc {
 	margin-top: 1.25rem;
 }
@@ -60,12 +58,28 @@ export default {
 	color: #a4abc5;
 }
 
+.calendario {
+	display: flex;
+	align-items: baseline;
+}
+
+.calendario h6 {
+	margin-right: 0.5rem;
+}
+
+.table .bTableThStyle {
+	max-width: 12rem !important;
+	text-overflow: ellipsis !important;
+	background-color: coral !important;
+}
+
 .button-container {
-	margin: 0.8rem 0 2rem 0;
+	display: flex;
+	justify-content: flex-end;
+	margin: 45px 0 20px 0;
 }
 
 .submit-button {
-	margin-right: 0.5rem;
 	color: #fff;
 	background: linear-gradient(14deg, #506ee4 0%, rgba(80, 110, 228, 0.6));
 	box-shadow: 0 7px 14px 0 rgb(80 110 228 / 50%);
