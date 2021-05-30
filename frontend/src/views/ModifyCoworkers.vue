@@ -1,5 +1,5 @@
 <template>
-	<b-container fluid>
+	<b-container class="pt-2" fluid>
 		<b-row class="justify-content-center">
 			<b-col col lg="6">
 				<b-card class="modify" cols="4">
@@ -58,21 +58,6 @@
 							</b-col>
 
 							<b-col cols="12" col md="4" class="mb-md-0">
-								<b-form-group id="input-group-2">
-									<b-form-input
-										id="input-2"
-										v-model="userClone.citta"
-										placeholder="Сittà"
-										required
-									></b-form-input>
-								</b-form-group>
-							</b-col>
-						</b-row>
-						<!-- second-line -->
-
-						<!-- third-line -->
-						<b-row class="mb-5">
-							<b-col cols="6">
 								<b-form-group id="input-group-1">
 									<b-form-input
 										id="input-1"
@@ -82,25 +67,78 @@
 									></b-form-input>
 								</b-form-group>
 							</b-col>
+						</b-row>
+						<!-- second-line -->
 
-							<b-col cols="6">
-								<b-form-group id="input-group-2">
-									<b-form-input
-										id="input-2"
-										v-model="userClone.ruoloSecondario"
-										placeholder="Ruollo Cecondario"
-										required
-									></b-form-input>
+						<b-row class="mb-5">
+							<b-col col lg="8">
+								<b-form-group id="input-group-6">
+									<label for="modifyCoworkersSelect" class="form-label h6"
+										>Seleziona un calendario</label
+									>
+									<b-form-select
+										v-model="userClone.calendario"
+										:options="userClone.calendarioOptions"
+										id="modifyCoworkersSelect"
+										class="form-select"
+									></b-form-select>
 								</b-form-group>
 							</b-col>
 						</b-row>
-						<!-- third-line -->
 
-						<b-form-textarea
-							id="textarea"
-							v-model="userClone.descrizione"
-							placeholder="Descrizione"
-						></b-form-textarea>
+						<b-row class="mb-5">
+							<b-col>
+								<b-form-group id="input-group-7" label="Orari di lavoro">
+									<!-- <label for="modifyCoworkersRadios" class="form-label h6"
+										>Orari di lavoro</label
+									> -->
+
+									<b-form-radio
+										v-model="userClone.orari_di_lavoro"
+										name="some-radios"
+										value="azienda"
+										>Eredita gli orari dell’azienda</b-form-radio
+									>
+									<b-form-radio
+										v-model="userClone.orari_di_lavoro"
+										name="some-radios"
+										value="personalizzati"
+										>Orari di lavoro personalizzati</b-form-radio
+									>
+								</b-form-group>
+
+								<div class="form-check">
+									<input
+										class="form-check-input"
+										type="radio"
+										name="flexRadioDefault"
+										id="flexRadioDefault1"
+									/>
+									<label class="form-check-label" for="flexRadioDefault1">
+										Default radio
+									</label>
+								</div>
+								<div class="form-check">
+									<input
+										class="form-check-input"
+										type="radio"
+										name="flexRadioDefault"
+										id="flexRadioDefault2"
+										checked
+									/>
+									<label class="form-check-label" for="flexRadioDefault2">
+										Default checked radio
+									</label>
+								</div>
+							</b-col>
+						</b-row>
+
+						<b-form-radio-group
+							id="radio-group-1"
+							v-model="userClone.orari_di_lavoro"
+							:options="options"
+							name="radio-options"
+						></b-form-radio-group>
 
 						<div class="button-container">
 							<b-button
@@ -130,7 +168,15 @@ export default {
 	name: 'ModifyForm',
 
 	data() {
-		return {};
+		return {
+			selected: 'first',
+			options: [
+				{ text: 'Toggle this custom radio', value: 'first' },
+				{ text: 'Or toggle this other custom radio', value: 'second' },
+				{ text: 'This one is Disabled', value: 'third', disabled: true },
+				{ text: 'This is the 4th radio', value: { fourth: 4 } }
+			]
+		};
 	},
 
 	created() {

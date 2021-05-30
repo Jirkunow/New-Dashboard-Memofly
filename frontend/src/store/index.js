@@ -38,6 +38,17 @@ export default new Vuex.Store({
 						descrizione:
 							'Eccello nel taglio donna and more stuff that i don’t have the want to write',
 						calendario: 'laurarossihair@gmail.com',
+						calendarioOptions: [
+							'laurarossihair@gmail.com',
+							'laurarossihair_2@gmail.com',
+							'laurarossihair_3@gmail.com',
+							'laurarossihair_4@gmail.com',
+							'laurarossihair_5@gmail.com',
+							'laurarossihair_6@gmail.com',
+							'laurarossihair_7@gmail.com'
+						],
+						orari_di_lavoro: 'azienda',
+
 						items: [
 							{
 								Giorni_lavorativi: 'Martedì',
