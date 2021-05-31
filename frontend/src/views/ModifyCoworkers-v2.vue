@@ -1,6 +1,5 @@
 <template>
 	<b-container class="pt-2" fluid>
-		<router-link to="/modify-form-v2">version-2</router-link>
 		<b-row class="justify-content-center">
 			<b-col col xl="6">
 				<b-card class="modify" cols="4">
@@ -78,7 +77,6 @@
 									label="Seleziona un calendario"
 									label-for="modify-сoworkers-select"
 									label-class="h6"
-									class="c-select"
 								>
 									<b-form-select
 										v-model="userClone.calendario"
@@ -96,7 +94,6 @@
 									id="input-group-7"
 									label="Orari di lavoro"
 									label-class="h6"
-									class="c-radio"
 								>
 									<b-form-radio
 										v-model="userClone.orari_di_lavoro"
@@ -116,31 +113,43 @@
 
 						<b-table
 							:items="userClone.items"
-							:fields="fields"
 							class="selectableTable"
-							thead-class="hidden_header"
+							head-variant="light"
 							responsive="sm"
 						>
+							<template #head(isActive)="data">
+								<b-form-checkbox
+									id="checkbox-weekday"
+									v-model="isSelectedAll"
+									name="checkbox-1"
+									:value="true"
+									:unchecked-value="false"
+									@change="selectAllRows"
+								>
+									{{ data.columns }}
+								</b-form-checkbox>
+							</template>
+
 							<template #cell(isActive)="{ item }">
-								<div class="checkbox-cell c-checkbox">
-									<b-form-checkbox
-										v-model="item.isActive"
-										:id="'checkbox-' + item.weekday"
-										:name="'checkbox-' + item.weekday"
-										:value="true"
-										:unchecked-value="false"
-										@change="selectRow(item)"
-									>
-									</b-form-checkbox>
-									<div style="color: #7182b7">
-										{{ item.weekday }}
-									</div>
-								</div>
+								<b-form-checkbox
+									v-model="item.isActive"
+									:id="'checkbox-' + item.weekday"
+									:name="'checkbox-' + item.weekday"
+									:value="true"
+									:unchecked-value="false"
+									@change="selectRow(item)"
+								>
+								</b-form-checkbox>
+							</template>
+
+							<template #cell(weekday)="{ item }"
+								><span :class="{ 'text-disabled': !item.isActive }">{{
+									item.weekday
+								}}</span>
 							</template>
 
 							<template #cell(apertura)="{ item }">
-								<b-col col xl="9" class="item-border-none">
-									<div style="color: #313f66">Apertura</div>
+								<b-col col xl="10">
 									<b-form-select
 										v-model="item.apertura"
 										:selected="item.apertura"
@@ -152,8 +161,7 @@
 							</template>
 
 							<template #cell(inizio_pausa)="{ item }">
-								<b-col col xl="9" class="item-border-none">
-									<div style="color: #313f66">Inizio pausa</div>
+								<b-col col xl="10">
 									<b-form-select
 										v-model="item.inizio_pausa"
 										:selected="item.inizio_pausa"
@@ -165,8 +173,7 @@
 							</template>
 
 							<template #cell(fine_pausa)="{ item }">
-								<b-col col xl="9" class="item-border-none">
-									<div style="color: #313f66">Fine pausa</div>
+								<b-col col xl="10">
 									<b-form-select
 										v-model="item.fine_pausa"
 										:selected="item.fine_pausa"
@@ -178,8 +185,7 @@
 							</template>
 
 							<template #cell(chiusura)="{ item }">
-								<b-col col xl="9" class="item-border-none">
-									<div style="color: #313f66">Chiusura</div>
+								<b-col col xl="10">
 									<b-form-select
 										v-model="item.chiusura"
 										:selected="item.chiusura"
@@ -216,33 +222,13 @@
 import { mapGetters } from 'vuex';
 import { isEmpty } from 'lodash';
 export default {
-	name: 'ModifyCoworkers',
+	name: 'ModifyCoworkers-v2',
 
 	data() {
 		return {
+			isSelectedAll: false,
 			selected: [],
-			time: [],
-			fields: [
-				{
-					key: 'isActive'
-				},
-				{
-					key: 'apertura',
-					label: 'Apertura'
-				},
-				{
-					key: 'inizio_pausa',
-					label: 'Inizio Pausa'
-				},
-				{
-					key: 'fine_pausa',
-					label: 'Fine Pausa'
-				},
-				{
-					key: 'chiusura',
-					label: 'Chiusura'
-				}
-			]
+			time: []
 		};
 	},
 
@@ -282,9 +268,20 @@ export default {
 			event.preventDefault();
 			this.$store.dispatch('deleteUser', this.userClone.id);
 		},
-
+		selectAllRows() {
+			if (this.isSelectedAll) {
+				this.userClone.items.map((i) => (i.isActive = true));
+			} else {
+				this.userClone.items.map((i) => (i.isActive = false));
+			}
+		},
 		selectRow(item) {
 			console.log('item', item.isActive);
+			if (this.userClone.items.some((i) => !i.isActive)) {
+				this.isSelectedAll = false;
+			} else {
+				this.isSelectedAll = true;
+			}
 		}
 	}
 };
@@ -305,42 +302,24 @@ export default {
 	margin-bottom: 0;
 }
 
-.btn-primary {
-	color: #fff;
-	background-color: #5272e1;
-	border-color: #5272e1;
-}
-
 .btn-shadow-primary {
-	box-shadow: 0 7px 14px 0 rgb(82 114 225 / 50%);
+	box-shadow: 0 7px 14px 0 rgb(80 110 228 / 50%);
 }
 
 .btn-shadow-danger {
 	box-shadow: 0 7px 14px 0 rgb(251 89 164 / 50%);
 }
-.c-select {
-	.form-control {
-		border: 0;
-		border-radius: 0;
-		border-bottom: 1px solid #dddee0;
-		transition: border-color 0s ease-out;
-		color: #7182b7;
-	}
 
-	.form-control:focus {
-		box-shadow: none;
-		border-color: #007bff;
-	}
+.form-control {
+	border: 0;
+	border-radius: 0;
+	border-bottom: 1px solid #dddee0;
+	transition: border-color 0s ease-out;
 }
 
-.item-border-none {
-	.form-control {
-		border: 0;
-		border-radius: 0;
-		box-shadow: none;
-		padding-right: 0;
-		color: #7182b7;
-	}
+.form-control:focus {
+	box-shadow: none;
+	border-color: #007bff;
 }
 
 .selectableTable .form-control {
@@ -349,40 +328,5 @@ export default {
 
 .text-disabled {
 	opacity: 0.65 !important;
-}
-
-.checkbox-cell {
-	display: flex;
-	align-items: center;
-	margin: 1rem 0;
-}
-</style>
-
-<style lang="scss">
-.hidden_header {
-	display: none !important;
-}
-
-.table td {
-	text-align: right;
-}
-
-.custom-control-label {
-	color: #7182b7;
-}
-.c-radio {
-	.custom-control-input:checked ~ .custom-control-label::before {
-		color: #fff;
-		border-color: #439af4;
-		background-color: #439af4;
-	}
-}
-
-.c-checkbox {
-	.custom-control-input:checked ~ .custom-control-label::before {
-		color: #fff;
-		border-color: #5272e1;
-		background-color: #5272e1;
-	}
 }
 </style>

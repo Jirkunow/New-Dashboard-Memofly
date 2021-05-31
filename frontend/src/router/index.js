@@ -17,6 +17,14 @@ const routes = [
 			import(
 				/* webpackChunkName: "modify-coworkers" */ '../views/ModifyCoworkers.vue'
 			)
+	},
+	{
+		path: '/modify-form-v2',
+		name: 'ModifyCoworkers-v2',
+		component: () =>
+			import(
+				/* webpackChunkName: "modify-coworkers-v2" */ '../views/ModifyCoworkers-v2.vue'
+			)
 	}
 ];
 

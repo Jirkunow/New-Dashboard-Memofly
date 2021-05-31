@@ -8,15 +8,16 @@
 	</div>
 </template>
 
-<style>
+<style lang="scss">
 body {
 	background-color: #edf0f5 !important;
+	color: #313f66;
 }
 #app {
 	font-family: Avenir, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	color: #2c3e50;
+	color: #313f66;
 }
 
 .h6 {
@@ -36,25 +37,20 @@ body {
 	color: #7182b7;
 }
 
-#nav {
-	padding: 30px;
-}
-
-#nav a {
-	font-weight: bold;
-	color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-	color: #42b983;
-}
-
 .table th {
 	text-align: center;
-	background-color: #f1f5fa !important;
 }
 
 .table td {
 	text-align: center;
+}
+
+// .form-control {
+// 	color: #313f66 !important;
+// }
+.form-control:disabled,
+.form-control[readonly] {
+	background-color: transparent !important;
+	opacity: 0.65 !important;
 }
 </style>

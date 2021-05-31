@@ -6,7 +6,13 @@
 		</div>
 
 		<h6 class="h6 mb-4">Orari di lavoro</h6>
-		<b-table-lite :items="user.items" class="table" bordered></b-table-lite>
+		<b-table-lite
+			:items="user.items"
+			:fields="fields"
+			class="table"
+			head-variant="light"
+			bordered
+		></b-table-lite>
 
 		<div class="button-container">
 			<b-button class="submit-button" @click="goToModifyPage"
@@ -29,7 +35,30 @@ export default {
 	},
 
 	data() {
-		return {};
+		return {
+			fields: [
+				{
+					key: 'weekday',
+					label: 'Weekday'
+				},
+				{
+					key: 'apertura',
+					label: 'Apertura'
+				},
+				{
+					key: 'inizio_pausa',
+					label: 'Inizio Pausa'
+				},
+				{
+					key: 'fine_pausa',
+					label: 'Fine Pausa'
+				},
+				{
+					key: 'chiusura',
+					label: 'Chiusura'
+				}
+			]
+		};
 	},
 
 	methods: {

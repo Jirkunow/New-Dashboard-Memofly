@@ -51,39 +51,60 @@ export default new Vuex.Store({
 
 						items: [
 							{
-								Giorni_lavorativi: 'Martedì',
-								Orario_di_apertura: '9:30',
-								Inizio_pausa: '13:30',
-								Fine_pausa: '14:30',
-								Orario_di_chiusura: '20:30'
+								isActive: false,
+								weekday: 'Lunedì',
+								apertura: '00:00',
+								inizio_pausa: '00:00',
+								fine_pausa: '00:00',
+								chiusura: '00:00'
 							},
 							{
-								Giorni_lavorativi: 'Mercoledì',
-								Orario_di_apertura: '9:30',
-								Inizio_pausa: '13:30',
-								Fine_pausa: '14:30',
-								Orario_di_chiusura: '20:30'
+								isActive: true,
+								weekday: 'Martedì',
+								apertura: '09:30',
+								inizio_pausa: '13:30',
+								fine_pausa: '14:30',
+								chiusura: '20:30'
 							},
 							{
-								Giorni_lavorativi: 'Giovedì',
-								Orario_di_apertura: '9:30',
-								Inizio_pausa: '13:30',
-								Fine_pausa: '14:30',
-								Orario_di_chiusura: '20:30'
+								isActive: true,
+								weekday: 'Mercoledì',
+								apertura: '09:30',
+								inizio_pausa: '13:30',
+								fine_pausa: '14:30',
+								chiusura: '20:30'
 							},
 							{
-								Giorni_lavorativi: 'Venerdì',
-								Orario_di_apertura: '9:30',
-								Inizio_pausa: '13:30',
-								Fine_pausa: '14:30',
-								Orario_di_chiusura: '20:30'
+								isActive: true,
+								weekday: 'Giovedì',
+								apertura: '09:30',
+								inizio_pausa: '13:30',
+								fine_pausa: '14:30',
+								chiusura: '20:30'
 							},
 							{
-								Giorni_lavorativi: 'Sabato',
-								Orario_di_apertura: '9:30',
-								Inizio_pausa: '13:30',
-								Fine_pausa: '14:30',
-								Orario_di_chiusura: '20:30'
+								isActive: true,
+								weekday: 'Venerdì',
+								apertura: '09:30',
+								inizio_pausa: '13:30',
+								fine_pausa: '14:30',
+								chiusura: '20:30'
+							},
+							{
+								isActive: true,
+								weekday: 'Sabato',
+								apertura: '09:30',
+								inizio_pausa: '13:30',
+								fine_pausa: '14:30',
+								chiusura: '20:30'
+							},
+							{
+								isActive: false,
+								weekday: 'Domenica',
+								apertura: '00:00',
+								inizio_pausa: '00:00',
+								fine_pausa: '00:00',
+								chiusura: '00:00'
 							}
 						]
 					}
@@ -105,9 +126,9 @@ export default new Vuex.Store({
 				// );
 
 				setTimeout(() => {
-					router.push('/');
 					commit('SET_USER', payload);
-				}, 1500);
+					router.push('/');
+				}, 800);
 			} catch (e) {
 				console.log('Error:', e);
 			}
