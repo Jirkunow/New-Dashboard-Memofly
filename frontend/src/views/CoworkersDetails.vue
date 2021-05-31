@@ -1,5 +1,5 @@
 <template>
-	<b-container class="pt-2" fluid>
+	<b-container class="pt-2" xl="6">
 		<Profile :user="user" />
 		<Description :user="user" />
 	</b-container>
