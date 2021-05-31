@@ -20,10 +20,13 @@ export default new Vuex.Store({
 	actions: {
 		async fetchUser({ commit }) {
 			try {
+				// uncomment when the endpoint will works
+
 				// const res = await axios.get(
 				// 	'https://www.memofly.it:3000/MW/v0.1/collaboratore'
 				// );
 
+				// dummy data
 				const res = {
 					data: {
 						id: 3212,
@@ -110,6 +113,7 @@ export default new Vuex.Store({
 					}
 				};
 
+				// just simulate the work of the server
 				setTimeout(() => {
 					commit('SET_USER', res.data);
 				}, 1000);
@@ -120,11 +124,14 @@ export default new Vuex.Store({
 
 		async saveUser({ commit }, payload) {
 			try {
+				// uncomment when the endpoint will works
+
 				// const res = await axios.post(
 				// 	'https://www.memofly.it:3000/MW/v0.1/collaboratore',
 				// 	payload
 				// );
 
+				// just simulate the work of the server
 				setTimeout(() => {
 					commit('SET_USER', payload);
 					router.push('/');
@@ -136,15 +143,18 @@ export default new Vuex.Store({
 
 		async deleteUser({ commit }, payload) {
 			try {
+				// uncomment when the endpoint will works
+
 				// const res = await axios.delete(
 				// 	'https://www.memofly.it:3000/MW/v0.1/collaboratore',
 				// 	payload
 				// );
 
+				// just simulate the work of the server
 				setTimeout(() => {
 					console.log('user was deleted id: ', payload);
 					commit('SET_USER', {});
-					router.push('/collaboratori');
+					router.push('/');
 				}, 1500);
 			} catch (e) {
 				console.log('Error:', e);

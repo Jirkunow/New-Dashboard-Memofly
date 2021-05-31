@@ -1,4 +1,5 @@
 <template>
+	<!-- The second version of the ModifyCoworkers page. Redesigned table and some inputs -->
 	<b-container class="pt-2" fluid>
 		<b-row class="justify-content-center">
 			<b-col col xl="6">
@@ -111,6 +112,7 @@
 							</b-col>
 						</b-row>
 
+						<!-- table start -->
 						<b-table
 							:items="userClone.items"
 							class="selectableTable"
@@ -196,7 +198,9 @@
 								</b-col>
 							</template>
 						</b-table>
+						<!-- table end -->
 
+						<!-- buttons -->
 						<div class="button-container">
 							<b-button
 								class="btn-shadow-primary m-1"
@@ -241,6 +245,7 @@ export default {
 	computed: {
 		...mapGetters(['userClone']),
 
+		// list of hours and minutes for select component in table
 		timeDropdownlist() {
 			let hours, minutes;
 			const time = [];
@@ -260,14 +265,17 @@ export default {
 	},
 
 	methods: {
+		// send data to the server
 		onSubmit(event) {
 			event.preventDefault();
 			this.$store.dispatch('saveUser', this.userClone);
 		},
+		// send user id to the server for deleting
 		onReset(event) {
 			event.preventDefault();
 			this.$store.dispatch('deleteUser', this.userClone.id);
 		},
+		// the method determines the logic of the checkbox select / deselect all
 		selectAllRows() {
 			if (this.isSelectedAll) {
 				this.userClone.items.map((i) => (i.isActive = true));
@@ -275,6 +283,8 @@ export default {
 				this.userClone.items.map((i) => (i.isActive = false));
 			}
 		},
+
+		// the method is launched when the state of the checkbox changes
 		selectRow(item) {
 			console.log('item', item.isActive);
 			if (this.userClone.items.some((i) => !i.isActive)) {

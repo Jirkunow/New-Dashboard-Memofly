@@ -114,6 +114,7 @@
 							</b-col>
 						</b-row>
 
+						<!-- table start -->
 						<b-table
 							:items="userClone.items"
 							:fields="fields"
@@ -190,7 +191,9 @@
 								</b-col>
 							</template>
 						</b-table>
+						<!-- table end -->
 
+						<!-- buttons -->
 						<div class="button-container">
 							<b-button
 								class="btn-shadow-primary m-1"
@@ -247,14 +250,17 @@ export default {
 	},
 
 	created() {
+		// load user data from server only if not in store
 		if (isEmpty(this.$store.state.user)) {
 			this.$store.dispatch('fetchUser');
 		}
 	},
 
 	computed: {
+		// data for table
 		...mapGetters(['userClone']),
 
+		// list of hours and minutes for select component in table
 		timeDropdownlist() {
 			let hours, minutes;
 			const time = [];
@@ -274,15 +280,19 @@ export default {
 	},
 
 	methods: {
+		// send data to the server
 		onSubmit(event) {
 			event.preventDefault();
 			this.$store.dispatch('saveUser', this.userClone);
 		},
+
+		// send user id to the server for deleting
 		onReset(event) {
 			event.preventDefault();
 			this.$store.dispatch('deleteUser', this.userClone.id);
 		},
 
+		// the method is launched when the state of the checkbox changes
 		selectRow(item) {
 			console.log('item', item.isActive);
 		}

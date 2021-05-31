@@ -45,9 +45,6 @@ body {
 	text-align: center;
 }
 
-// .form-control {
-// 	color: #313f66 !important;
-// }
 .form-control:disabled,
 .form-control[readonly] {
 	background-color: transparent !important;

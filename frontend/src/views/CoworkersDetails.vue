@@ -1,6 +1,8 @@
 <template>
 	<b-container class="pt-2" xl="6">
+		<!-- component with user photo -->
 		<Profile :user="user" />
+		<!-- component with table -->
 		<Description :user="user" />
 	</b-container>
 </template>
@@ -16,6 +18,7 @@ export default {
 	components: { Profile, Description },
 
 	created() {
+		// load user data from server only if not in store
 		if (isEmpty(this.$store.state.user)) {
 			this.$store.dispatch('fetchUser');
 		}
